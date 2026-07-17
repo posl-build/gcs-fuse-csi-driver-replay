@@ -1,17 +1,10 @@
 name: ci
 
 on:
-  push:
-    branches:
-      - main
-      - 'release-*'
-  pull_request:
-    branches:
-      - '*'
-
+  workflow_dispatch:
 jobs:
   build:
-    runs-on: ubuntu-22.04
+    runs-on: self-hosted
     timeout-minutes: 10
     steps:
     - name: Checkout repo
@@ -31,7 +24,7 @@ jobs:
       run: make build-e2e-test
   
   unit-test:
-    runs-on: ubuntu-22.04
+    runs-on: self-hosted
     timeout-minutes: 10
     steps:
     - name: Checkout repo
@@ -45,7 +38,7 @@ jobs:
       run: make unit-test
   
   sanity-test:
-    runs-on: ubuntu-22.04
+    runs-on: self-hosted
     timeout-minutes: 10
     steps:
     - name: Checkout repo
@@ -59,7 +52,7 @@ jobs:
       run: make sanity-test
   
   verify:
-    runs-on: ubuntu-22.04
+    runs-on: self-hosted
     timeout-minutes: 10
     steps:
     - name: Checkout repo
